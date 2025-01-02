@@ -17,10 +17,13 @@ router.post('/login',[
 ], userController.loginUser);
 
 router.get('/profile',Authmiddleware.authUser
-    ,userController.getUserProfile);
+    ,userController
+    .getUserProfile);
 
 
- router.get('/logout',Authmiddleware.authUser,userController.logoutUser);
+ router.get('/logout',
+    Authmiddleware.authUser,
+    userController.logoutUser);
 
 
 
