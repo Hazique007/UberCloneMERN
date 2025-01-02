@@ -134,3 +134,82 @@ curl -X POST http://localhost:5000/users/login \
   "password": "password123"
 }'
 ```
+
+## Endpoint: `/users/profile`
+
+### Method: GET
+
+### Description:
+This endpoint is used to get the profile of the authenticated user.
+
+### Headers:
+- **Authorization:** Bearer token
+
+### Responses:
+
+#### Success:
+- **Status Code:** 200 OK
+- **Response Body:**
+  ```json
+  {
+    "user": {
+      "_id": "string",
+      "fullname": {
+        "firstname": "string",
+        "lastname": "string"
+      },
+      "email": "string"
+    }
+  }
+  ```
+
+#### Authentication Errors:
+- **Status Code:** 401 Unauthorized
+- **Response Body:**
+  ```json
+  {
+    "message": "Authentication failed"
+  }
+  ```
+
+### Example Request:
+```bash
+curl -X GET http://localhost:5000/users/profile \
+-H "Authorization: Bearer <your_token>"
+```
+
+## Endpoint: `/users/logout`
+
+### Method: GET
+
+### Description:
+This endpoint is used to log out the authenticated user.
+
+### Headers:
+- **Authorization:** Bearer token
+
+### Responses:
+
+#### Success:
+- **Status Code:** 200 OK
+- **Response Body:**
+  ```json
+  {
+    "message": "Successfully logged out"
+  }
+  ```
+
+#### Authentication Errors:
+- **Status Code:** 401 Unauthorized
+- **Response Body:**
+  ```json
+  {
+    "message": "Authentication failed"
+  }
+  ```
+
+### Example Request:
+```bash
+curl -X GET http://localhost:5000/users/logout \
+-H "Authorization: Bearer <your_token>"
+```
