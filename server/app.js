@@ -6,6 +6,7 @@ const cors = require('cors');
 app.use(cors());
 const ConnecttoDB = require('./db/db');
 const userRoute = require('./Routes/userRoutes');
+const CaptainRoute=require('./Routes/CaptainRoute');
 const cookieParser = require('cookie-parser');
 
 ConnecttoDB();
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 app.use('/users',userRoute);
+app.use('/captain',CaptainRoute);
 
 
 

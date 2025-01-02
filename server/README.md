@@ -213,3 +213,85 @@ This endpoint is used to log out the authenticated user.
 curl -X GET http://localhost:5000/users/logout \
 -H "Authorization: Bearer <your_token>"
 ```
+
+## Endpoint: `/captains/register`
+
+### Method: POST
+
+### Description:
+This endpoint is used to register a new captain. It requires the captain's first name, email, password, and vehicle details.
+
+### Request Body:
+```json
+{
+  "fullname": {
+    "firstname": "string (required, min length: 3)"
+  },
+  "email": "string (required, must be a valid email)",
+  "password": "string (required, min length: 6)",
+  "vehicle": {
+    "colour": "string (required, min length: 3)",
+    "vehicleType": "string (required, must be one of ['car', 'motorcycle', 'auto'])",
+    "plate": "string (required, min length: 3)",
+    "capacity": "integer (required, min: 1)"
+  }
+}
+```
+
+### Responses:
+
+#### Success:
+- **Status Code:** 201 Created
+- **Response Body:**
+  ```json
+  {
+    "token": "string (JWT token)",
+    "captain": {
+      "_id": "string",
+      "fullname": {
+        "firstname": "string"
+      },
+      "email": "string",
+      "vehicle": {
+        "colour": "string",
+        "vehicleType": "string",
+        "plate": "string",
+        "capacity": "integer"
+      }
+    }
+  }
+  ```
+
+#### Validation Errors:
+- **Status Code:** 400 Bad Request
+- **Response Body:**
+  ```json
+  {
+    "errors": [
+      {
+        "msg": "string",
+        "param": "string",
+        "location": "string"
+      }
+    ]
+  }
+  ```
+
+### Example Request:
+```bash
+curl -X POST http://localhost:5000/captains/register \
+-H "Content-Type: application/json" \
+-d '{
+  "fullname": {
+    "firstname": "Jane"
+  },
+  "email": "jane.doe@example.com",
+  "password": "password123",
+  "vehicle": {
+    "colour": "red",
+    "vehicleType": "car",
+    "plate": "ABC123",
+    "capacity": 4
+  }
+}'
+```

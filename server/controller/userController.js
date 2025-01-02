@@ -12,6 +12,12 @@ console.log(req.body);
 
 const {fullname ,email,password}=req.body;
 
+const isUserAlreadyExist = await UserModel.findOne({email});
+
+if(isUserAlreadyExist){
+    res.status(400).json({message:"User already exist"});
+}
+
 const hashedPassword=await UserModel.hashPassword(password);
 
 const user = await UserServices.createUser(
