@@ -10,7 +10,7 @@ if(!errors.isEmpty()){
 }
 console.log(req.body);
 
-const {fullname ,email,password}=req.body;
+const {fullName ,email,password}=req.body;
 
 const isUserAlreadyExist = await UserModel.findOne({email});
 
@@ -22,8 +22,8 @@ const hashedPassword=await UserModel.hashPassword(password);
 
 const user = await UserServices.createUser(
   {
-    firstname : fullname.firstname,
-    lastname  : fullname.lastname,
+    firstname : fullName.firstname,
+    lastname  : fullName.lastname,
     email,
     password:hashedPassword
   });

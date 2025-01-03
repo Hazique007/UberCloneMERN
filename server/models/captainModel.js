@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 
 
 const CaptainSchema = mongoose.Schema({
-    fullname: {
+    fullName: {
         firstname: {
             type: String,
             required: true,

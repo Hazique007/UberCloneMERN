@@ -10,7 +10,7 @@ This endpoint is used to register a new user. It requires the user's first name,
 ### Request Body:
 ```json
 {
-  "fullname": {
+  "fullName": {
     "firstname": "string (required, min length: 3)",
     "lastname": "string (optional, min length: 3)"
   },
@@ -29,7 +29,7 @@ This endpoint is used to register a new user. It requires the user's first name,
     "token": "string (JWT token)",
     "user": {
       "_id": "string",
-      "fullname": {
+      "fullName": {
         "firstname": "string",
         "lastname": "string"
       },
@@ -58,7 +58,7 @@ This endpoint is used to register a new user. It requires the user's first name,
 curl -X POST http://localhost:5000/users/register \
 -H "Content-Type: application/json" \
 -d '{
-  "fullname": {
+  "fullName": {
     "firstname": "John",
     "lastname": "Doe"
   },
@@ -92,7 +92,7 @@ This endpoint is used to log in an existing user. It requires the user's email a
     "token": "string (JWT token)",
     "user": {
       "_id": "string",
-      "fullname": {
+      "fullName": {
         "firstname": "string",
         "lastname": "string"
       },
@@ -154,7 +154,7 @@ This endpoint is used to get the profile of the authenticated user.
   {
     "user": {
       "_id": "string",
-      "fullname": {
+      "fullName": {
         "firstname": "string",
         "lastname": "string"
       },
@@ -224,7 +224,7 @@ This endpoint is used to register a new captain. It requires the captain's first
 ### Request Body:
 ```json
 {
-  "fullname": {
+  "fullName": {
     "firstname": "string (required, min length: 3)"
   },
   "email": "string (required, must be a valid email)",
@@ -248,7 +248,7 @@ This endpoint is used to register a new captain. It requires the captain's first
     "token": "string (JWT token)",
     "captain": {
       "_id": "string",
-      "fullname": {
+      "fullName": {
         "firstname": "string"
       },
       "email": "string",
@@ -282,7 +282,7 @@ This endpoint is used to register a new captain. It requires the captain's first
 curl -X POST http://localhost:5000/captains/register \
 -H "Content-Type: application/json" \
 -d '{
-  "fullname": {
+  "fullName": {
     "firstname": "Jane"
   },
   "email": "jane.doe@example.com",
@@ -321,7 +321,7 @@ This endpoint is used to log in an existing captain. It requires the captain's e
     "token": "string (JWT token)",
     "captain": {
       "_id": "string",
-      "fullname": {
+      "fullName": {
         "firstname": "string"
       },
       "email": "string",
@@ -388,7 +388,7 @@ This endpoint is used to get the profile of the authenticated captain.
   {
     "captain": {
       "_id": "string",
-      "fullname": {
+      "fullName": {
         "firstname": "string"
       },
       "email": "string",

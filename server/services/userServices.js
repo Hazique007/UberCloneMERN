@@ -12,7 +12,7 @@ module.exports.createUser = async ({
         throw new Error('All fields are required');
     }
     const user =  UserModel.create({
-        fullname:{
+        fullName:{
             firstname,
             lastname,
         },
