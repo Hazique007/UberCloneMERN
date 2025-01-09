@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
-import { Link, Links } from 'react-router-dom'
+import React, { useContext, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import {UserDatacontext} from '../../../context/Usercontext'
 
 const UserSignup = () => {
     const [email, setEmail] = useState('')
@@ -8,23 +10,45 @@ const UserSignup = () => {
     const [lastName, setlastName] = useState('')
     const [userData, setuserData] = useState({})
 
-    const SubmitHandler = (e) => {
+    const navigate = useNavigate()
+
+    const {user,setUser} =useContext(UserDatacontext)
+
+    const SubmitHandler = async (e) => {
         e.preventDefault();
-        setuserData({
+        const newUser = {
+            fullName: {
+                firstName: firstName,
+                lastName: lastName
+            },
             email: email,
             password: password,
-            fullName: {
-              firstName: firstName,
-              lastName: lastName
-            }
-        })
+           
+        }
 
-        console.log(userData)
+        const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register`, newUser)
+        if(response.status === 201){
+            console.log(
+                "Signed Up Succesfully!"
+            );
+            
+           const data= response.data
+           setUser(data.user)
+           localStorage.setItem('token',data.token)
+           navigate('/home')
 
-        setEmail(''),
-            setPassword('')
-        setfirstName('')
-        setlastName('')
+        }else{
+            log(
+                "error"
+            )
+        }
+
+
+
+        // setEmail(''),
+        //     setPassword('')
+        // setfirstName('')
+        // setlastName('')
 
     }
     return (
@@ -80,7 +104,7 @@ const UserSignup = () => {
 
 
                 </form>
-                <p className='text-center pt-2'>Already have an account? <Link to='/signup' className='text-blue-600'> Login here
+                <p className='text-center pt-2'>Already have an account? <Link to='/login' className='text-blue-600'> Login here
                 </Link></p>
             </div>
             <div>

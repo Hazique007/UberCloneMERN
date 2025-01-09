@@ -2,6 +2,7 @@ const CaptainModel = require('../models/captainModel');
 const CaptainServices = require('../services/captainServices');
 const { validationResult } = require('express-validator');
 const BlackListenSchema = require('../models/BlackListTokenSchema');
+
 module.exports.registerCaptain = async (req, res, next) => {
     if (!validationResult(req).isEmpty()) {
         return res.status(400).json({ errors: validationResult(req).array() });
@@ -17,8 +18,8 @@ module.exports.registerCaptain = async (req, res, next) => {
     const hashedPassword = await CaptainModel.hashPassword(password);
 
     const captain = await CaptainServices.createCaptain({
-        firstname: fullName.firstname,
-        lastname: fullName.lastname,
+        firstName: fullName.firstName,
+        lastName: fullName.lastName,
         email,
         password: hashedPassword,
 

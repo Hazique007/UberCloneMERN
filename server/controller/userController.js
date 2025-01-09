@@ -22,8 +22,8 @@ const hashedPassword=await UserModel.hashPassword(password);
 
 const user = await UserServices.createUser(
   {
-    firstname : fullName.firstname,
-    lastname  : fullName.lastname,
+    firstName : fullName.firstName,
+    lastName  : fullName.lastName,
     email,
     password:hashedPassword
   });
